@@ -121,6 +121,10 @@ class mod_vpl_executionoptions_form extends moodleform {
         $mform->setDefault( 'automaticgrading', $instance->automaticgrading );
         $mform->disabledIf( 'automaticgrading', 'evaluate', 'eq', 0 );
 
+        $url = new moodle_url('/mod/vpl/forms/proforma_submission.php', [ 'id' => $id ]);
+        $link = html_writer::link($url, 'link to proforma submission settings page');
+        $mform->addElement('static', 'proforma_submission_link', 'ProFormA', $link);
+
         $mform->addElement( 'submit', 'saveoptions', get_string( 'saveoptions', VPL ) );
     }
 }
