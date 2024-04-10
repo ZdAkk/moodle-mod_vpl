@@ -26,38 +26,6 @@ class mod_vpl_proforma_submission_form extends moodleform {
         $mform->addElement('filemanager', 'proformataskfileupload', 'ProForma task file',
             null, array('subdirs' => 0, 'maxbytes' => $COURSE->maxbytes, 'maxfiles' => 1));
 
-        $mform->addElement('header', 'submissionsettings', 'Submission Settings');
-        $graderSelectOptions = array();
-
-        $mform->addElement('select', 'graderselect', 'Grader', $graderSelectOptions);
-
-        /* Add the settings for the result specs */
-        $select = $mform->addElement('select', 'resultspecformat', get_string('resultspecformat', 'qtype_moopt'), array(
-                'zip' => 'zip',
-                'xml' => 'xml')
-        );
-        $select->setSelected('zip'); // this default could be changed by a grader- or question-specific value in the near future
-        $mform->setType('resultspecformat', PARAM_TEXT);
-
-        $select = $mform->addElement('select', 'resultspecstructure', get_string('resultspecstructure', 'qtype_moopt'), array(
-                'merged-test-feedback' => 'merged-test-feedback',
-                'separate-test-feedback' => 'separate-test-feedback')
-        );
-        $select->setSelected('separate-test-feedback'); // this default could be changed by a grader- or question-specific value in the near future
-        $mform->setType('resultspecstructure', PARAM_TEXT);
-
-        /* Add the settings for the teacher and student feedback level */
-        $feedbackleveloptions = array(
-            'info' => 'info',
-        );
-
-        $select = $mform->addElement('select', 'studentfeedbacklevel', 'Student Feedback Level', $feedbackleveloptions);
-        $select->setSelected('info');
-        $mform->setType('studentfeedbacklevel', PARAM_TEXT);
-        $select = $mform->addElement('select', 'teacherfeedbacklevel', 'Teacher Feedback Level', $feedbackleveloptions);
-        $mform->setType('teacherfeedbacklevel', PARAM_TEXT);
-        $select->setSelected('info');
-
         $mform->addElement( 'submit', 'saveoptions', get_string( 'saveoptions', VPL ) );
 
     }
